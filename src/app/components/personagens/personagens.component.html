@@ -1,0 +1,43 @@
+<h2>🛡️ Cadastro de Personagens 🐉</h2>
+
+<div class="form-container">
+  <form (ngSubmit)="adicionarPersonagem()">
+    <div class="form-group">
+      <label>Nome</label>
+      <input [(ngModel)]="novoPersonagem.nome" name="nome" required>
+    </div>
+    <div class="form-group">
+      <label>Raça</label>
+      <input [(ngModel)]="novoPersonagem.raca" name="raca" required>
+    </div>
+    <div class="form-group">
+      <label>Nível</label>
+      <input [(ngModel)]="novoPersonagem.nivel" name="nivel" type="number" required>
+    </div>
+    <div class="form-group">
+      <label>Cor de Fundo</label>
+      <input [(ngModel)]="novoPersonagem.cor" name="cor" type="color">
+    </div>
+    <div class="form-group">
+      <label>URL da Imagem</label>
+      <input [(ngModel)]="novoPersonagem.imagem" name="imagem">
+    </div>
+    <button type="submit">Adicionar Personagem</button>
+  </form>
+</div>
+
+<div class="cards">
+  <div class="card" *ngFor="let p of personagens" [style.backgroundColor]="p.cor">
+    <img
+      [src]="p.imagem && p.imagem.trim() !== '' ? p.imagem : placeholder"
+      (error)="onImgError($event)"
+      [alt]="p.nome"
+      loading="lazy"
+      referrerpolicy="no-referrer"
+    />
+    <h3>{{ p.nome }}</h3>
+    <p>Tipo: {{ p.raca }}</p>
+    <p>Poder: {{ p.nivel }}</p>
+  </div>
+</div>
+

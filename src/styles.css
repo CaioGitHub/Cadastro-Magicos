@@ -1,1 +1,30 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  background: #1a1a1a url('https://www.transparenttextures.com/patterns/dark-mosaic.png');
+  color: #f5f2e7;
+  font-family: 'MedievalSharp', cursive;
+  margin: 0;
+  min-height: 100vh;
+}
+
+a {
+  color: #f5d77b;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #ffd700;
+}
+
+button {
+  background-color: #8b0000;
+  color: #fff;
+  border: 2px solid #d4af37;
+  border-radius: 6px;
+  padding: 5px 15px;
+  cursor: pointer;
+  font-family: 'MedievalSharp', cursive;
+}
+
+button:hover {
+  background-color: #a52a2a;
+}
