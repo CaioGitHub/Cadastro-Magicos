@@ -1,27 +1,68 @@
-# CadastroMagico
+# 🧙‍♂️ Cadastro de Itens Mágicos e Personagens
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.21.
+Aplicação Angular desenvolvida com tema **RPG medieval**, permitindo o **cadastro e visualização de itens mágicos e personagens**.  
+O projeto foi criado para fins educacionais, praticando conceitos de **rotas, data binding e componentização** no Angular 18.
 
-## Development server
+---
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## ⚔️ Funcionalidades
 
-## Code scaffolding
+### 🧪 Cadastro de Itens Mágicos
+- Campos: **Nome**, **Tipo**, **Poder** e **Imagem (URL)**  
+- Exibe os itens cadastrados em **cards estilizados** com aparência de pergaminho.  
+- Caso a imagem não seja encontrada, é exibido um **placeholder temático**.  
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### 🧝 Cadastro de Personagens
+- Campos: **Nome**, **Raça**, **Nível**, **Cor de Fundo** e **Imagem (URL)**  
+- Cada personagem é exibido em um card colorido com os dados e a imagem.  
+- O **input de cor** (`<input type="color">`) altera dinamicamente o fundo do card.  
 
-## Build
+---
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## 🧭 Estrutura de Rotas
 
-## Running unit tests
+| Rota | Tela |
+|------|------|
+| `/itens-magicos` | Cadastro de Itens Mágicos |
+| `/personagens`   | Cadastro de Personagens   |
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+A navegação é feita através de uma **navbar** fixa no topo da aplicação.
 
-## Running end-to-end tests
+---
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## 🏗️ Tecnologias Utilizadas
 
-## Further help
+- [Angular 18 (standalone components)](https://angular.dev)
+- HTML5 / CSS3
+- TypeScript
+- FormsModule / NgModel
+- Rotas Angular (`@angular/router`)
+- Estilo customizado com tema **Dungeons & Dragons**
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+---
+
+## 🎨 Tema e Estilo
+
+O layout utiliza um **tema dark medieval** com:
+- Fonte [MedievalSharp](https://fonts.google.com/specimen/MedievalSharp)
+- Bordas douradas e fundo de “dungeon”
+- Ícones e emojis RPG para dar vida à interface  
+
+---
+
+## ⚙️ Instalação e Execução
+
+### Pré-requisitos
+- Node.js 20+  
+- Angular CLI 18+
+
+### Passos
+```bash
+# 1️⃣ Instalar dependências
+npm install
+
+# 2️⃣ Rodar o projeto em modo desenvolvimento
+ng serve
+
+# 3️⃣ Abrir no navegador
+http://localhost:4200
