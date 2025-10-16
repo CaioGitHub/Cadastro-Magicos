@@ -34,12 +34,10 @@ a.ativo {
   font-weight: bold;
 }
 
-/* 🔮 botão de tema dentro do menu */
 app-theme-toggle {
   margin-left: auto;
 }
 
-/* Separador */
 hr {
   border: none;
   border-top: 2px solid var(--border-color);

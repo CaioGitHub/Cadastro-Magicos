@@ -1,7 +1,6 @@
 <div class="spells-wrapper">
   <h2>🪄 Grimório de Magias</h2>
 
-  <!-- 🔍 Filtros -->
   <div class="filters">
     <input
       type="text"
@@ -17,13 +16,11 @@
     </select>
   </div>
 
-  <!-- 🌀 Carregamento -->
   <div *ngIf="loading" class="loading">
     <div class="magic-spinner"></div>
     <p>Invocando magias...</p>
   </div>
 
-  <!-- 📜 Lista de Magias -->
   <div *ngIf="!loading" class="panel spells-panel">
     <div *ngFor="let level of (getFilteredSpells() | keyvalue)">
       <h3 (click)="toggleLevel(level.key)">
@@ -43,7 +40,6 @@
     </div>
   </div>
 
-  <!-- 📖 Detalhe -->
   <div *ngIf="selectedSpell" class="panel spell-details">
     <h3>{{ selectedSpell.name }}</h3>
     <p><strong>Nível:</strong> {{ selectedSpell.level }}</p>
@@ -54,7 +50,6 @@
     <p class="descricao">{{ selectedSpell.desc?.join('\n') }}</p>
   </div>
 
-  <!-- 🔮 Carregar mais -->
   <div class="load-more">
     <button (click)="loadSpells(totalLoadedSpells, 50)" class="rpg-btn">
       🔮 Carregar mais magias

@@ -1,7 +1,6 @@
 <div class="personagens-container">
   <h2>🛡️ Cadastro de Personagens 🐉</h2>
 
-  <!-- 🧾 Formulário -->
   <form class="panel" (ngSubmit)="salvarPersonagem()">
     <div class="form-group">
       <label>Nome</label>
@@ -36,7 +35,6 @@
     </button>
   </form>
 
-  <!-- 💎 Lista de Personagens -->
   <div class="cards">
     <div class="card" *ngFor="let p of personagens; let i = index" [style.backgroundColor]="p.cor">
       <img
@@ -57,7 +55,6 @@
     </div>
   </div>
 
-  <!-- 🧹 Limpar tudo -->
   <div class="flex justify-center mt-4">
     <button class="delete-btn" (click)="limparTudo()">🧹 Limpar Todos</button>
   </div>

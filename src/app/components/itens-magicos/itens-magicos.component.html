@@ -1,7 +1,6 @@
 <div class="itens-wrapper">
   <h2>⚔️ Cadastro de Itens Mágicos ⚗️</h2>
 
-  <!-- 🧾 Formulário -->
   <form class="panel" (ngSubmit)="salvarItem()">
     <div class="form-group">
       <label>Nome do Item</label>
@@ -31,7 +30,6 @@
     </button>
   </form>
 
-  <!-- 💎 Lista de Itens -->
   <div class="cards">
     <div class="card" *ngFor="let item of itens; let i = index">
       <img

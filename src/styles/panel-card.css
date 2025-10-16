@@ -1,6 +1,4 @@
-/* === 🌌 Tema base para todos os painéis e componentes RPG === */
 
-/* === Variáveis globais ====================================== */
 :root {
   --bg-color: #0c0c0c;
   --text-color: #f5f2e7;
@@ -20,7 +18,6 @@
   --button-hover-text: #fff;
 }
 
-/* === 🧙‍♂️ Botões RPG universais ============================ */
 .rpg-btn {
   all: unset;
   display: inline-block;
@@ -44,7 +41,6 @@
   transform: translateY(-2px);
 }
 
-/* === ✨ Painéis e contêineres =============================== */
 .panel {
   background: var(--panel-color);
   border: 2px solid var(--border-color);
@@ -72,14 +68,12 @@
   z-index: 1;
 }
 
-/* === 💫 Animações =========================================== */
 @keyframes ambientFlow {
   0% { transform: translateY(0) scale(1); opacity: 0.05; }
   50% { transform: translateY(-10px) scale(1.05); opacity: 0.1; }
   100% { transform: translateY(10px) scale(1); opacity: 0.08; }
 }
 
-/* === ⚡ Textos e títulos ==================================== */
 h1, h2, h3 {
   font-family: 'Cinzel', serif;
   text-align: center;
@@ -87,7 +81,6 @@ h1, h2, h3 {
   text-shadow: 0 0 12px var(--accent-color);
 }
 
-/* === 🪶 Campos de formulário ================================ */
 input, select, textarea {
   background: var(--input-bg);
   border: 1px solid var(--border-color);
@@ -104,7 +97,6 @@ input:focus, select:focus, textarea:focus {
   box-shadow: 0 0 10px var(--accent-color);
 }
 
-/* === 🕯️ Transições suaves ================================== */
 * {
   transition: background-color 0.5s ease, color 0.5s ease,
               border-color 0.5s ease, box-shadow 0.5s ease;

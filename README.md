@@ -11,7 +11,12 @@ Permite o **cadastro e visualização de itens mágicos e personagens** em uma i
 - Campos: **Nome**, **Tipo**, **Poder** e **Imagem (URL)**  
 - Exibição dos itens em **cards temáticos** com moldura dourada e brilho mágico  
 - Caso a imagem seja inválida ou ausente, aparece um **placeholder temático**  
-- Transições suaves e efeitos de luz nas interações  
+- Transições suaves e efeitos de luz nas interações
+- Funções completas de CRUD:
+- - ➕ Adicionar novo item
+- - ✏️ Editar item existente
+- - 🗑️ Excluir item
+- - 💾 Dados salvos automaticamente no localStorage
 
 ---
 
@@ -20,6 +25,25 @@ Permite o **cadastro e visualização de itens mágicos e personagens** em uma i
 - Cada personagem é mostrado em um card personalizado com a cor escolhida  
 - O **campo de cor** (`<input type="color">`) altera dinamicamente o fundo  
 - Layout totalmente responsivo e adaptado para modo claro/escuro  
+- Também possui CRUD completo com persistência local:
+- - ➕ Adicionar personagem
+- - ✏️ Editar e atualizar dados
+- - 🗑️ Excluir personagem
+- - 💾 Dados persistem mesmo após recarregar a página
+
+---
+
+### 🌗 Tema Dinâmico Global
+- Alternância entre modo claro e escuro com botão interativo ☀️ / 🌑
+- Tema salvo automaticamente no **localStorage**
+- Transição suave entre temas com efeitos mágicos
+
+---
+
+### 📜 Grimório de Magias (Spells List)
+- Catálogo interativo de magias dividido por nível
+- Filtros por nome e nível
+- Efeitos visuais e animações inspiradas em grimórios encantados
 
 ---
 
@@ -35,6 +59,12 @@ A navegação é feita via **navbar fixa**, com um botão de **mudança de tema*
 
 ---
 
+### 💾 Persistência de Dados
+
+O projeto utiliza um serviço compartilhado (**StorageService**) responsável por gerenciar o armazenamento local via **localStorage**, permitindo que os dados permaneçam mesmo após recarregar ou fechar o navegador.
+
+---
+
 ## 🏗️ Tecnologias Utilizadas
 
 - ⚙️ [**Angular 18 (Standalone Components)**](https://angular.dev)
@@ -42,6 +72,7 @@ A navegação é feita via **navbar fixa**, com um botão de **mudança de tema*
 - 🎨 **HTML5 + CSS3**  
 - 🔁 **Angular Router** (rotas e navegação SPA)  
 - 🧩 **FormsModule / NgModel** (two-way data binding)  
+- 💡 **LocalStorage Service personalizado**
 - 🌗 **Tema dinâmico** com persistência via `localStorage`
 
 ---
@@ -103,8 +134,9 @@ cadastro-magico/
 │   │   │   ├── spells-list/
 │   │   │   └── navbar/
 │   │   ├── shared/
-│   │   │   └── theme-toggle/
-│   │   ├── services/
+│   │   │   ├── theme-toggle/
+│   │   │   └── services/
+│   │   │       └── storage.service.ts
 │   │   ├── app.component.ts
 │   │   ├── app.routes.ts
 │   │   └── app.config.ts

@@ -4,7 +4,7 @@
 
 app-navbar {
   display: block;
-  margin-bottom: 2.5rem; /* 👈 espaçamento vertical entre navbar e título */
+  margin-bottom: 2.5rem;
 }
 
 body {

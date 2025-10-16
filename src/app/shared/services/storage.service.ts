@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
 export class StorageService {
-  /** Salva dados no localStorage */
   salvar<T>(chave: string, valor: T): void {
     try {
       localStorage.setItem(chave, JSON.stringify(valor));
@@ -11,7 +10,6 @@ export class StorageService {
     }
   }
 
-  /** Lê dados do localStorage */
   carregar<T>(chave: string, valorPadrao: T): T {
     try {
       const dados = localStorage.getItem(chave);
@@ -22,12 +20,10 @@ export class StorageService {
     }
   }
 
-  /** Remove uma chave do armazenamento */
   remover(chave: string): void {
     localStorage.removeItem(chave);
   }
 
-  /** Limpa tudo (opcional, cuidado!) */
   limparTudo(): void {
     localStorage.clear();
   }
