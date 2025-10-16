@@ -1,9 +1,26 @@
-h2 {
-  text-align: center;
-  font-family: 'Cinzel Decorative', cursive;
-  color: #d4af37;
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
+
+/* === Estrutura geral ========================================= */
+:host {
+  display: block;
+  min-height: 100vh;
+  background: var(--bg-color) url('https://www.transparenttextures.com/patterns/dark-mosaic.png');
+  color: var(--text-color);
+  font-family: 'Cinzel', serif;
+  padding: 2rem;
+  transition: background-color 0.5s ease, color 0.5s ease;
 }
 
+/* === Título ================================================== */
+h2 {
+  text-align: center;
+  color: var(--accent-color);
+  font-family: 'Cinzel', serif;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 0 10px var(--accent-color);
+}
+
+/* === Formulário ============================================== */
 .form-container {
   display: flex;
   justify-content: center;
@@ -15,10 +32,12 @@ form {
   grid-template-columns: 1fr 1fr;
   gap: 15px;
   max-width: 600px;
-  background: rgba(0, 0, 0, 0.6);
-  border: 2px solid #d4af37;
+  background: var(--panel-color);
+  border: 2px solid var(--border-color);
   border-radius: 10px;
   padding: 20px;
+  box-shadow: 0 0 15px var(--accent-color);
+  transition: all 0.5s ease;
 }
 
 .form-group {
@@ -27,18 +46,27 @@ form {
 }
 
 label {
-  color: #f5d77b;
+  color: var(--accent-light);
   margin-bottom: 5px;
 }
 
 input {
-  background: #2b1d0e;
-  border: 1px solid #d4af37;
-  color: #fff;
+  background: var(--input-bg);
+  border: 1px solid var(--border-color);
+  color: var(--input-text);
   padding: 6px;
   border-radius: 5px;
+  font-family: inherit;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
+input:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 10px var(--accent-color);
+}
+
+/* === Cards de Itens ========================================== */
 .cards {
   display: flex;
   justify-content: center;
@@ -47,18 +75,19 @@ input {
 }
 
 .card {
-  background: #3c2f1a;
-  border: 2px solid #d4af37;
+  background: var(--panel-color);
+  border: 2px solid var(--border-color);
   border-radius: 10px;
   width: 220px;
   padding: 10px;
   text-align: center;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-  transition: transform 0.2s;
+  box-shadow: 0 0 15px var(--accent-color);
+  transition: transform 0.2s, box-shadow 0.4s ease;
 }
 
 .card:hover {
   transform: scale(1.05);
+  box-shadow: 0 0 25px var(--accent-hover);
 }
 
 .card img {
@@ -66,15 +95,30 @@ input {
   height: 140px;
   object-fit: contain;
   border-radius: 8px;
-  border: 1px solid #d4af37;
+  border: 1px solid var(--border-color);
+  margin-bottom: 10px;
 }
 
 .card h3 {
-  color: #ffd700;
+  color: var(--accent-color);
   margin: 10px 0 5px;
+  font-weight: bold;
+  text-shadow: 0 0 8px var(--accent-hover);
 }
 
 .card p {
-  color: #f5f2e7;
+  color: var(--text-color);
   margin: 2px 0;
+}
+
+/* === Dica de imagem ========================================== */
+small {
+  color: var(--accent-light);
+  opacity: 0.8;
+  font-size: 0.85rem;
+}
+
+/* === Transições suaves ======================================= */
+* {
+  transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
 }

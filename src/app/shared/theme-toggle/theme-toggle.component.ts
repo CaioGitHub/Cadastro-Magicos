@@ -33,6 +33,6 @@ export class ThemeToggleComponent implements OnInit {
       root.classList.remove('dark-mode');
     }
 
-    setTimeout(() => root.classList.remove('theme-transition'), 700);
+    window.setTimeout(() => root.classList.remove('theme-transition'), 700);
   }
 }

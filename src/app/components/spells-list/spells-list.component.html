@@ -1,4 +1,4 @@
-<div class="p-6 text-white min-h-screen transition-colors duration-700">
+<div class="spells-container p-6 text-white min-h-screen transition-colors duration-700">
   <!-- Título -->
   <div class="flex items-center justify-center mb-6">
     <h2 class="text-3xl font-bold text-accent">🪄 Grimório de Magias</h2>
@@ -69,10 +69,7 @@
 
   <!-- 🔮 Carregar mais -->
   <div class="flex justify-center mt-6">
-    <button
-      (click)="loadSpells(totalLoadedSpells, 50)"
-      class="load-btn"
-    >
+    <button (click)="loadSpells(totalLoadedSpells, 50)" class="load-btn">
       🔮 Carregar mais magias
     </button>
   </div>

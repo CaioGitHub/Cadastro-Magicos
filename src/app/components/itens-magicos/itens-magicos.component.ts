@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -14,7 +14,8 @@ interface ItemMagico {
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './itens-magicos.component.html',
-  styleUrl: './itens-magicos.component.css'
+  styleUrl: './itens-magicos.component.css',
+  encapsulation: ViewEncapsulation.None
 })
 export class ItensMagicosComponent {
   novoItem: ItemMagico = { nome: '', tipo: '', poder: 0, imagem: '' };

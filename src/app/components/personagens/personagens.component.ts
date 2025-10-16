@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -15,7 +15,8 @@ interface Personagem {
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './personagens.component.html',
-  styleUrl: './personagens.component.css'
+  styleUrl: './personagens.component.css',
+  encapsulation: ViewEncapsulation.None
 })
 export class PersonagensComponent {
   novoPersonagem: Personagem = { nome: '', raca: '', nivel: 1, cor: '#ffffff', imagem: '' };

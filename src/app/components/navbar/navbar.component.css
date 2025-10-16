@@ -2,9 +2,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #2b1d0e;
-  border-bottom: 3px solid #d4af37;
+  background-color: var(--panel-color);
+  border-bottom: 3px solid var(--border-color);
   padding: 10px 25px;
+  box-shadow: 0 2px 10px var(--accent-color);
+  transition: background-color 0.5s ease, box-shadow 0.5s ease, border-color 0.5s ease;
 }
 
 .links {
@@ -13,25 +15,33 @@
 }
 
 a {
-  color: #f5d77b;
+  color: var(--accent-light);
   font-size: 1.2rem;
   text-transform: uppercase;
   letter-spacing: 1px;
   transition: color 0.3s, text-shadow 0.3s;
+  font-family: 'Cinzel', serif;
 }
 
 a:hover {
-  color: #ffd700;
-  text-shadow: 0 0 6px #ffcc00;
+  color: var(--accent-hover);
+  text-shadow: 0 0 6px var(--accent-hover);
 }
 
 a.ativo {
   text-decoration: underline;
-  color: #fff;
+  color: var(--accent-color);
   font-weight: bold;
 }
 
-/* botão de tema dentro do menu */
+/* 🔮 botão de tema dentro do menu */
 app-theme-toggle {
   margin-left: auto;
+}
+
+/* Separador */
+hr {
+  border: none;
+  border-top: 2px solid var(--border-color);
+  margin: 0;
 }

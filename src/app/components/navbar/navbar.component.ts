@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ThemeToggleComponent } from '../../shared/theme-toggle/theme-toggle.component';
 
@@ -7,6 +7,7 @@ import { ThemeToggleComponent } from '../../shared/theme-toggle/theme-toggle.com
   standalone: true,
   imports: [RouterModule, ThemeToggleComponent],
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  styleUrls: ['./navbar.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class NavbarComponent {}
