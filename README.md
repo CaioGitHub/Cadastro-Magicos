@@ -72,6 +72,7 @@ ng serve
 
 # 3️⃣ Abrir no navegador
 http://localhost:4200
+```
 
 ---
 
