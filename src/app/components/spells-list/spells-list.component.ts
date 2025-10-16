@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { DndApiService } from '../../services/dnd-api.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -8,7 +8,8 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './spells-list.component.html',
-  styleUrls: ['./spells-list.component.css']
+  styleUrls: ['./spells-list.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class SpellsListComponent implements OnInit {
   groupedSpells: { [level: string]: any[] } = {};
@@ -18,6 +19,7 @@ export class SpellsListComponent implements OnInit {
   selectedLevel: string = 'all';
   openedLevels: { [key: string]: boolean } = {};
   darkMode = false;
+  private hoverSoundCooldown = false;
 
   constructor(private dndService: DndApiService) {}
 
@@ -78,7 +80,13 @@ export class SpellsListComponent implements OnInit {
     this.darkMode = !this.darkMode;
     const root = document.documentElement;
     root.classList.add('theme-transition');
-    this.darkMode ? root.classList.add('dark-mode') : root.classList.remove('dark-mode');
+
+    if (this.darkMode) {
+      root.classList.add('dark-mode');
+    } else {
+      root.classList.remove('dark-mode');
+    }
+
     localStorage.setItem('darkMode', String(this.darkMode));
     setTimeout(() => root.classList.remove('theme-transition'), 700);
   }

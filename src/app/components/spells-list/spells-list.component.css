@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=UnifrakturCook:wght@700&display=swap');
 
+:host ::ng-deep button {
+  all: unset;
+}
+
 /* === Temas ===================================================== */
 :root {
   --bg-color: #1a1a1a;
@@ -8,28 +12,103 @@
   --accent-color: #ffcc00;
   --accent-hover: #ffea70;
   --accent-light: #fff2b5;
+  --border-color: #b8860b;
+  --button-bg: #2b0000;
+  --button-hover-bg: #b8860b;
+  --button-hover-text: #000;
+  --input-bg: #2e2e2e;
+  --input-text: #fff4b0;
 }
 
 :root.dark-mode {
   --bg-color: #0b1120;
   --panel-color: #0f172a;
-  --text-color: #cbd5e1;
+  --text-color: #dbeafe;
   --accent-color: #3b82f6;
   --accent-hover: #60a5fa;
   --accent-light: #bfdbfe;
+  --border-color: #2563eb;
+  --button-bg: #1e3a8a;
+  --button-hover-bg: #3b82f6;
+  --button-hover-text: #000;
+  --input-bg: #1e293b;
+  --input-text: #dbeafe;
 }
+
+/* Glow mais frio no modo escuro */
+:root.dark-mode .spell-btn {
+  box-shadow: 0 0 10px var(--accent-color), 0 0 25px var(--accent-hover);
+}
+:root.dark-mode .spell-btn:hover {
+  box-shadow: 0 0 20px var(--accent-hover), 0 0 40px var(--accent-color);
+}
+
+:root.dark-mode .load-btn {
+  background: var(--accent-color);
+  box-shadow: 0 0 20px var(--accent-color);
+}
+
 
 /* === Estrutura ================================================= */
 :host {
   display: block;
   min-height: 100vh;
-  background: #0b0b0b url('https://www.transparenttextures.com/patterns/dark-mosaic.png');
-  color: #f5f5f5;
+  background: var(--bg-color) url('https://www.transparenttextures.com/patterns/dark-mosaic.png');
+  color: var(--text-color);
   font-family: 'Cinzel', serif;
-  transition: background-color 0.6s ease, color 0.6s ease;
+  transition: background-color 0.6s ease, color 0.6s ease, box-shadow 0.6s ease, border-color 0.6s ease;
   padding: 2rem;
-  border: 3px double #b8860b;
-  box-shadow: 0 0 20px #b8860b55;
+  border: 3px double var(--border-color);
+  box-shadow: 0 0 30px var(--accent-color);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ✨ Gradiente mágico de fundo */
+:host::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 20% 20%, var(--accent-color)20%, transparent 80%),
+              radial-gradient(circle at 80% 80%, var(--accent-hover)15%, transparent 70%);
+  opacity: 0.08;
+  mix-blend-mode: screen;
+  animation: ambientFlow 20s ease-in-out infinite alternate;
+  z-index: 0;
+}
+
+.bg-input {
+  background-color: var(--input-bg);
+}
+
+.text-input-text {
+  color: var(--input-text);
+}
+
+.bg-input::placeholder {
+  color: var(--accent-light);
+  opacity: 0.7;
+}
+
+@keyframes ambientFlow {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.05;
+  }
+  50% {
+    transform: translateY(-10px) scale(1.05);
+    opacity: 0.1;
+  }
+  100% {
+    transform: translateY(10px) scale(1);
+    opacity: 0.08;
+  }
+}
+
+/* Para garantir que o conteúdo fique acima do gradiente */
+:host > * {
+  position: relative;
+  z-index: 1;
 }
 
 
@@ -38,44 +117,59 @@
 }
 .bg-panel {
   background-color: var(--panel-color);
+  box-shadow: 0 0 20px var(--accent-color);
 }
 .border-accent {
-  border-color: var(--accent-color);
+  border-color: var(--border-color);
 }
+
 .text-accent-light {
   color: var(--accent-light);
 }
 
-/* === Botões ==================================================== */
+/* === Botões de Magia (RPG Style) =============================== */
 .spell-btn {
-  background: #2b0000;
-  color: #ffcc66;
-  border: 1px solid #b8860b;
-  border-radius: 6px;
-  padding: 6px 10px;
-  box-shadow: 0 0 8px #b8860b88;
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: var(--button-bg);
+  color: var(--accent-light);
+  border: 2px solid var(--border-color);
   font-family: 'UnifrakturCook', cursive;
+  font-size: 0.9rem;
+  box-shadow: 0 0 10px var(--accent-color);
+  text-shadow: 1px 1px 2px #000;
   transition: all 0.3s ease-in-out;
 }
 
 .spell-btn:hover {
-  background: #b8860b;
-  color: #000;
-  box-shadow: 0 0 15px #ffcc00;
+  background: var(--button-hover-bg);
+  color: var(--button-hover-text);
+  box-shadow: 0 0 15px var(--accent-hover), 0 0 25px var(--accent-color);
   transform: translateY(-2px);
 }
 
+/* === Botão “Carregar mais magias” ============================= */
 .load-btn {
-  background-color: var(--accent-color);
-  color: #000;
+  display: inline-block;
+  background: var(--accent-color);
+  color: var(--button-hover-text);
+  border: 2px solid var(--border-color);
   font-weight: bold;
-  padding: 10px 24px;
-  border-radius: 6px;
-  transition: background-color 0.3s;
+  padding: 12px 28px;
+  border-radius: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 0 10px var(--accent-color);
+  transition: background-color 0.3s, transform 0.3s, box-shadow 0.4s;
 }
 
 .load-btn:hover {
   background-color: var(--accent-hover);
+  box-shadow: 0 0 20px var(--accent-hover);
+  transform: translateY(-3px);
 }
 
 /* === Animações ================================================= */
@@ -97,8 +191,8 @@
   to { opacity: 1; transform: scale(1) translateY(0); }
 }
 @keyframes spellGlow {
-  from { box-shadow: 0 0 4px #b8860b55; }
-  to { box-shadow: 0 0 14px #ffcc00aa; }
+  from { box-shadow: 0 0 4px var(--accent-color); }
+  to { box-shadow: 0 0 14px var(--accent-hover); }
 }
 
 /* === Spinner =================================================== */
@@ -220,4 +314,56 @@ button:hover .absolute {
 .theme-button:hover span {
   transform: rotate(360deg);
   opacity: 0.9;
+}
+
+/* === Correção: reforça prioridade sobre Tailwind =============== */
+.spell-btn, .load-btn {
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-family: 'UnifrakturCook', cursive !important;
+  transition: all 0.3s ease-in-out;
+}
+
+/* === Estilo original dos botões RPG ============================ */
+.spell-btn {
+  display: inline-block !important;
+  text-align: center !important;
+  cursor: pointer !important;
+  padding: 8px 12px !important;
+  border-radius: 8px !important;
+  background: var(--button-bg) !important;
+  color: var(--accent-light) !important;
+  border: 2px solid var(--border-color) !important;
+  font-family: 'UnifrakturCook', cursive !important;
+  font-size: 0.9rem !important;
+  box-shadow: 0 0 10px var(--accent-color) !important;
+  text-shadow: 1px 1px 2px #000 !important;
+  transition: all 0.3s ease-in-out !important;
+}
+
+.spell-btn:hover {
+  background: var(--button-hover-bg) !important;
+  color: var(--button-hover-text) !important;
+  box-shadow: 0 0 15px var(--accent-hover), 0 0 25px var(--accent-color) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* === Botão “Carregar mais” ==================================== */
+.load-btn {
+  background: var(--accent-color);
+  color: var(--button-hover-text);
+  border: 2px solid var(--border-color);
+  font-weight: bold;
+  padding: 10px 24px;
+  border-radius: 6px;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.load-btn:hover {
+  background-color: var(--accent-hover);
+  box-shadow: 0 0 20px var(--accent-color);
+  transform: translateY(-2px);
 }
