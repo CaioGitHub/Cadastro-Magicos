@@ -1,21 +1,11 @@
 <div class="p-6 text-white min-h-screen transition-colors duration-700">
   <!-- Título -->
-  <div class="flex items-center justify-between mb-6">
+  <div class="flex items-center justify-center mb-6">
     <h2 class="text-3xl font-bold text-accent">🪄 Grimório de Magias</h2>
-
-    <!-- 🔮 Botão de Transmutação -->
-    <button
-      (click)="toggleTheme()"
-      class="theme-button"
-      [ngClass]="darkMode ? 'moon rotate' : 'sun rotate'"
-    >
-      <span>{{ darkMode ? '🌑' : '☀️' }}</span>
-    </button>
-
   </div>
 
   <!-- 🔍 Filtros -->
-  <div class="flex flex-col md:flex-row gap-4 mb-6">
+  <div class="flex flex-col md:flex-row gap-4 mb-6 justify-center">
     <input
       type="text"
       placeholder="Buscar magia por nome..."

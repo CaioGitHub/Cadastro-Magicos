@@ -19,7 +19,7 @@ a:hover {
   color: #ffd700;
 }
 
-button {
+button:not(.spell-btn):not(.load-btn):not(.theme-button) {
   background-color: #8b0000;
   color: #fff;
   border: 2px solid #d4af37;
@@ -29,6 +29,36 @@ button {
   font-family: 'MedievalSharp', cursive;
 }
 
-button:hover {
+button:not(.spell-btn):not(.load-btn):not(.theme-button):hover {
   background-color: #a52a2a;
+}
+
+:root {
+  --bg-color: #1a1a1a;
+  --panel-color: #111;
+  --text-color: #fefefe;
+  --accent-color: #ffcc00;
+  --accent-hover: #ffea70;
+  --accent-light: #fff2b5;
+  --border-color: #b8860b;
+  --button-bg: #2b0000;
+  --button-hover-bg: #b8860b;
+  --button-hover-text: #000;
+  --input-bg: #2e2e2e;
+  --input-text: #fff4b0;
+}
+
+:root.dark-mode {
+  --bg-color: #0b1120;
+  --panel-color: #0f172a;
+  --text-color: #dbeafe;
+  --accent-color: #3b82f6;
+  --accent-hover: #60a5fa;
+  --accent-light: #bfdbfe;
+  --border-color: #2563eb;
+  --button-bg: #1e3a8a;
+  --button-hover-bg: #3b82f6;
+  --button-hover-text: #000;
+  --input-bg: #1e293b;
+  --input-text: #dbeafe;
 }

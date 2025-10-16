@@ -1,0 +1,7 @@
+<button
+  (click)="toggleTheme()"
+  class="theme-button"
+  [ngClass]="darkMode ? 'moon rotate' : 'sun rotate'"
+>
+  <span>{{ darkMode ? '🌑' : '☀️' }}</span>
+</button>

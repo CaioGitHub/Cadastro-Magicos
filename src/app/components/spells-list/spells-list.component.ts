@@ -18,15 +18,10 @@ export class SpellsListComponent implements OnInit {
   searchTerm = '';
   selectedLevel: string = 'all';
   openedLevels: { [key: string]: boolean } = {};
-  darkMode = false;
-  private hoverSoundCooldown = false;
 
   constructor(private dndService: DndApiService) {}
 
   ngOnInit() {
-    const savedTheme = localStorage.getItem('darkMode');
-    this.darkMode = savedTheme === 'true';
-    if (this.darkMode) document.documentElement.classList.add('dark-mode');
     this.loadSpells(0, 50);
   }
 
@@ -49,14 +44,10 @@ export class SpellsListComponent implements OnInit {
   }
 
   showDetails(spell: any) {
-    this.playSound();
-    this.selectedSpell = spell;
-  }
-
-  playSound() {
     const audio = new Audio('https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg');
     audio.volume = 0.4;
     audio.play().catch(() => {});
+    this.selectedSpell = spell;
   }
 
   getFilteredSpells(): { [level: string]: any[] } {
@@ -74,21 +65,6 @@ export class SpellsListComponent implements OnInit {
 
   toggleLevel(level: string) {
     this.openedLevels[level] = !this.openedLevels[level];
-  }
-
-  toggleTheme() {
-    this.darkMode = !this.darkMode;
-    const root = document.documentElement;
-    root.classList.add('theme-transition');
-
-    if (this.darkMode) {
-      root.classList.add('dark-mode');
-    } else {
-      root.classList.remove('dark-mode');
-    }
-
-    localStorage.setItem('darkMode', String(this.darkMode));
-    setTimeout(() => root.classList.remove('theme-transition'), 700);
   }
 
   get totalLoadedSpells(): number {

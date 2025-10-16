@@ -1,0 +1,72 @@
+.theme-button {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.6s ease, box-shadow 0.8s ease, filter 0.6s ease, background 1s ease;
+  overflow: hidden;
+}
+
+/* ☀️ Modo solar */
+.theme-button.sun {
+  background: radial-gradient(circle at center, #ffcc33 25%, #ff6600 70%, #2b0000 100%);
+  border-color: #ffcc00;
+  box-shadow: 0 0 25px #ffcc00;
+  animation: sunPulse 3s ease-in-out infinite;
+}
+
+@keyframes sunPulse {
+  0%, 100% {
+    box-shadow: 0 0 12px #ffcc00, 0 0 30px #ffcc00aa, 0 0 60px #ffb30055;
+  }
+  50% {
+    box-shadow: 0 0 20px #ffe066, 0 0 45px #ffcc00cc, 0 0 80px #ffb300aa;
+  }
+}
+
+/* 🌑 Modo lunar */
+.theme-button.moon {
+  background: radial-gradient(circle at center, #5b21b6 25%, #1e3a8a 70%, #0b0b33 100%);
+  border-color: #60a5fa;
+  box-shadow: 0 0 25px #60a5fa;
+}
+
+.theme-button.moon::before {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 2px solid rgba(96, 165, 250, 0.4);
+  animation: moonOrbit 6s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes moonOrbit {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Hover animado */
+.theme-button:hover {
+  transform: translateY(-4px) rotate(15deg);
+  filter: brightness(1.25);
+}
+
+.theme-button span {
+  font-size: 1.4rem;
+  transition: transform 0.8s ease, opacity 0.6s ease;
+}
+
+.theme-button.rotate span {
+  transform: rotate(180deg);
+}
+
+.theme-button:hover span {
+  transform: rotate(360deg);
+  opacity: 0.9;
+}
