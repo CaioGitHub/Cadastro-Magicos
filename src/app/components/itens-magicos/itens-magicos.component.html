@@ -2,7 +2,7 @@
   <h2>⚔️ Cadastro de Itens Mágicos ⚗️</h2>
 
   <!-- 🧾 Formulário -->
-  <form class="panel" (ngSubmit)="adicionarItem()">
+  <form class="panel" (ngSubmit)="salvarItem()">
     <div class="form-group">
       <label>Nome do Item</label>
       <input [(ngModel)]="novoItem.nome" name="nome" required />
@@ -26,12 +26,14 @@
       </small>
     </div>
 
-    <button type="submit" class="rpg-btn">Adicionar Item</button>
+    <button type="submit" class="rpg-btn">
+      {{ editando ? "Salvar Alterações" : "Adicionar Item" }}
+    </button>
   </form>
 
   <!-- 💎 Lista de Itens -->
   <div class="cards">
-    <div class="card" *ngFor="let item of itens">
+    <div class="card" *ngFor="let item of itens; let i = index">
       <img
         [src]="item.imagem && item.imagem.trim() !== '' ? item.imagem : placeholder"
         (error)="onImgError($event)"
@@ -42,6 +44,15 @@
       <h3>{{ item.nome }}</h3>
       <p>Tipo: {{ item.tipo }}</p>
       <p>Poder: {{ item.poder }}</p>
+
+      <div class="card-buttons">
+        <button type="button" class="edit-btn" (click)="editarItem(i)">✏️ Editar</button>
+        <button type="button" class="delete-btn" (click)="removerItem(i)">🗑️ Excluir</button>
+      </div>
     </div>
+  </div>
+
+  <div class="flex justify-center mt-4">
+    <button class="delete-btn" (click)="limparTudo()">🧹 Limpar Todos</button>
   </div>
 </div>
