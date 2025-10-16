@@ -17,10 +17,14 @@ export class SpellsListComponent implements OnInit {
   searchTerm = '';
   selectedLevel: string = 'all';
   openedLevels: { [key: string]: boolean } = {};
+  darkMode = false;
 
   constructor(private dndService: DndApiService) {}
 
   ngOnInit() {
+    const savedTheme = localStorage.getItem('darkMode');
+    this.darkMode = savedTheme === 'true';
+    if (this.darkMode) document.documentElement.classList.add('dark-mode');
     this.loadSpells(0, 50);
   }
 
@@ -36,9 +40,7 @@ export class SpellsListComponent implements OnInit {
           const level = detail.level ?? 0;
           if (!this.groupedSpells[level]) this.groupedSpells[level] = [];
           this.groupedSpells[level].push(detail);
-
-          loaded++;
-          if (loaded === total) this.loading = false; // só desliga quando todas carregarem
+          if (++loaded === total) this.loading = false;
         });
       });
     });
@@ -58,22 +60,27 @@ export class SpellsListComponent implements OnInit {
   getFilteredSpells(): { [level: string]: any[] } {
     const filtered: { [level: string]: any[] } = {};
     const term = this.searchTerm.toLowerCase();
-
     for (const [level, spells] of Object.entries(this.groupedSpells)) {
       if (this.selectedLevel !== 'all' && this.selectedLevel !== level) continue;
-
       const filteredLevelSpells = spells.filter((spell) =>
         spell.name.toLowerCase().includes(term)
       );
-
       if (filteredLevelSpells.length > 0) filtered[level] = filteredLevelSpells;
     }
-
     return filtered;
   }
 
   toggleLevel(level: string) {
     this.openedLevels[level] = !this.openedLevels[level];
+  }
+
+  toggleTheme() {
+    this.darkMode = !this.darkMode;
+    const root = document.documentElement;
+    root.classList.add('theme-transition');
+    this.darkMode ? root.classList.add('dark-mode') : root.classList.remove('dark-mode');
+    localStorage.setItem('darkMode', String(this.darkMode));
+    setTimeout(() => root.classList.remove('theme-transition'), 700);
   }
 
   get totalLoadedSpells(): number {
