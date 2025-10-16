@@ -1,68 +1,119 @@
 # 🧙‍♂️ Cadastro de Itens Mágicos e Personagens
 
-Aplicação Angular desenvolvida com tema **RPG medieval**, permitindo o **cadastro e visualização de itens mágicos e personagens**.  
-O projeto foi criado para fins educacionais, praticando conceitos de **rotas, data binding e componentização** no Angular 18.
+Uma aplicação **Angular 18** com tema **RPG medieval**, criada para fins educacionais e inspirada em **Dungeons & Dragons**.  
+Permite o **cadastro e visualização de itens mágicos e personagens** em uma interface encantada ✨ com efeitos, tema dinâmico e navegação intuitiva.
 
 ---
 
 ## ⚔️ Funcionalidades
 
-### 🧪 Cadastro de Itens Mágicos
+### 🧪 **Cadastro de Itens Mágicos**
 - Campos: **Nome**, **Tipo**, **Poder** e **Imagem (URL)**  
-- Exibe os itens cadastrados em **cards estilizados** com aparência de pergaminho.  
-- Caso a imagem não seja encontrada, é exibido um **placeholder temático**.  
+- Exibição dos itens em **cards temáticos** com moldura dourada e brilho mágico  
+- Caso a imagem seja inválida ou ausente, aparece um **placeholder temático**  
+- Transições suaves e efeitos de luz nas interações  
 
-### 🧝 Cadastro de Personagens
+---
+
+### 🧝 **Cadastro de Personagens**
 - Campos: **Nome**, **Raça**, **Nível**, **Cor de Fundo** e **Imagem (URL)**  
-- Cada personagem é exibido em um card colorido com os dados e a imagem.  
-- O **input de cor** (`<input type="color">`) altera dinamicamente o fundo do card.  
+- Cada personagem é mostrado em um card personalizado com a cor escolhida  
+- O **campo de cor** (`<input type="color">`) altera dinamicamente o fundo  
+- Layout totalmente responsivo e adaptado para modo claro/escuro  
 
 ---
 
 ## 🧭 Estrutura de Rotas
 
-| Rota | Tela |
-|------|------|
-| `/itens-magicos` | Cadastro de Itens Mágicos |
-| `/personagens`   | Cadastro de Personagens   |
+| Caminho | Página |
+|----------|--------|
+| `/itens-magicos` | 🪄 Cadastro de Itens Mágicos |
+| `/personagens`   | 🛡️ Cadastro de Personagens |
+| `/spells`        | 📜 Grimório de Magias |
 
-A navegação é feita através de uma **navbar** fixa no topo da aplicação.
+A navegação é feita via **navbar fixa**, com um botão de **mudança de tema** (☀️/🌑) animado no canto superior direito.
 
 ---
 
 ## 🏗️ Tecnologias Utilizadas
 
-- [Angular 18 (standalone components)](https://angular.dev)
-- HTML5 / CSS3
-- TypeScript
-- FormsModule / NgModel
-- Rotas Angular (`@angular/router`)
-- Estilo customizado com tema **Dungeons & Dragons**
+- ⚙️ [**Angular 18 (Standalone Components)**](https://angular.dev)
+- 💾 **TypeScript**  
+- 🎨 **HTML5 + CSS3**  
+- 🔁 **Angular Router** (rotas e navegação SPA)  
+- 🧩 **FormsModule / NgModel** (two-way data binding)  
+- 🌗 **Tema dinâmico** com persistência via `localStorage`
 
 ---
 
 ## 🎨 Tema e Estilo
 
-O layout utiliza um **tema dark medieval** com:
-- Fonte [MedievalSharp](https://fonts.google.com/specimen/MedievalSharp)
-- Bordas douradas e fundo de “dungeon”
-- Ícones e emojis RPG para dar vida à interface  
+O projeto adota um **tema dark medieval** inspirado em **RPGs clássicos**, com:
+- 🖋️ Fonte: [**Cinzel**](https://fonts.google.com/specimen/Cinzel) e [**UnifrakturCook**](https://fonts.google.com/specimen/UnifrakturCook)  
+- 🌌 Fundo texturizado estilo dungeon (`dark-mosaic`)  
+- ✨ Bordas douradas com efeitos de brilho e animação suave  
+- 🔮 Modo escuro/luz com animação de transição e botão interativo  
 
 ---
 
 ## ⚙️ Instalação e Execução
 
-### Pré-requisitos
-- Node.js 20+  
-- Angular CLI 18+
+### 🔧 Pré-requisitos
+- [Node.js 20+](https://nodejs.org/)
+- [Angular CLI 18+](https://angular.dev/tools/cli)
 
-### Passos
+### 🚀 Rodando o projeto
 ```bash
 # 1️⃣ Instalar dependências
 npm install
 
-# 2️⃣ Rodar o projeto em modo desenvolvimento
+# 2️⃣ Iniciar o servidor de desenvolvimento
 ng serve
 
 # 3️⃣ Abrir no navegador
 http://localhost:4200
+
+---
+
+## 🧠 Conceitos Praticados
+- Componentização avançada com standalone: true
+- Comunicação entre componentes
+- Two-way data binding com [(ngModel)]
+- Rotas dinâmicas e lazy loading
+- Gerenciamento de temas e estilos reativos
+
+---
+
+## 🧩 Estrutura do Projeto
+```pgsql
+cadastro-magico/
+├── public/
+│   ├── favicon.ico
+│   └── assets/
+│       └── rpg/
+│           ├── item-placeholder.png
+│           └── personagem-placeholder.png
+│
+├── src/
+│   ├── app/
+│   │   ├── components/
+│   │   │   ├── itens-magicos/
+│   │   │   ├── personagens/
+│   │   │   ├── spells-list/
+│   │   │   └── navbar/
+│   │   ├── shared/
+│   │   │   └── theme-toggle/
+│   │   ├── services/
+│   │   ├── app.component.ts
+│   │   ├── app.routes.ts
+│   │   └── app.config.ts
+│   │
+│   ├── styles/
+│   │   ├── panel-card.css
+│   │   └── styles.css
+│   │
+│   ├── main.ts
+│   └── index.html
+│
+└── angular.json
+```
