@@ -1,0 +1,75 @@
+<div class="p-6 text-white">
+  <h2 class="text-3xl font-bold mb-4 text-yellow-400">🪄 Grimório de Magias</h2>
+
+  <!-- 🔍 Filtros -->
+  <div class="flex flex-col md:flex-row gap-4 mb-6">
+    <input
+      type="text"
+      placeholder="Buscar magia por nome..."
+      [(ngModel)]="searchTerm"
+      class="p-2 rounded bg-gray-800 border border-yellow-700 w-full md:w-1/2 text-yellow-200 focus:outline-none focus:ring focus:ring-yellow-600"
+    />
+
+    <select
+      [(ngModel)]="selectedLevel"
+      class="p-2 rounded bg-gray-800 border border-yellow-700 text-yellow-200 focus:outline-none focus:ring focus:ring-yellow-600"
+    >
+      <option value="all">Todos os níveis</option>
+      <option *ngFor="let lvl of (groupedSpells | keyvalue)" [value]="lvl.key">
+        Nível {{ lvl.key }}
+      </option>
+    </select>
+  </div>
+
+  <div *ngIf="loading" class="flex flex-col items-center justify-center py-12 text-yellow-300">
+    <div class="magic-spinner mb-4"></div>
+    <p class="text-lg font-semibold animate-pulse">Invocando magias...</p>
+  </div>
+
+  <!-- 📜 Lista filtrada -->
+  <div *ngIf="!loading">
+    <div *ngFor="let level of (getFilteredSpells() | keyvalue)">
+      <h3
+        class="text-2xl font-semibold text-red-400 mb-2 cursor-pointer flex items-center gap-2"
+        (click)="toggleLevel(level.key)"
+      >
+        <span [class.rotate-90]="openedLevels[level.key]" class="transition-transform">▶</span>
+        Nível {{ level.key }}
+      </h3>
+
+      <div
+        *ngIf="openedLevels[level.key]"
+        class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2 mb-6 spell-grid"
+      >
+        <button
+          *ngFor="let spell of level.value"
+          (click)="showDetails(spell)"
+          class="bg-red-900 text-yellow-200 px-3 py-1 rounded hover:bg-red-700 hover:text-white transition"
+        >
+          {{ spell.name }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 📖 Detalhe -->
+  <div *ngIf="selectedSpell" class="mt-8 p-6 rounded-lg bg-gray-900 border border-yellow-600 shadow-lg">
+    <h3 class="text-2xl font-bold mb-2">{{ selectedSpell.name }}</h3>
+    <p><strong>Nível:</strong> {{ selectedSpell.level }}</p>
+    <p><strong>Tempo de Conjuração:</strong> {{ selectedSpell.casting_time }}</p>
+    <p><strong>Alcance:</strong> {{ selectedSpell.range }}</p>
+    <p><strong>Componentes:</strong> {{ selectedSpell.components?.join(', ') }}</p>
+    <p class="mt-4"><strong>Descrição:</strong></p>
+    <p class="text-gray-300 whitespace-pre-line">{{ selectedSpell.desc?.join('\n') }}</p>
+  </div>
+
+  <div class="flex justify-center mt-6">
+    <button
+      (click)="loadSpells(totalLoadedSpells, 50)"
+      class="bg-yellow-700 hover:bg-yellow-600 text-black font-bold px-6 py-2 rounded"
+    >
+      🔮 Carregar mais magias
+    </button>
+  </div>
+
+</div>
