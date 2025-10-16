@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+app-navbar {
+  display: block;
+  margin-bottom: 2.5rem; /* 👈 espaçamento vertical entre navbar e título */
+}
+
 body {
   background: #1a1a1a url('https://www.transparenttextures.com/patterns/dark-mosaic.png');
   color: #f5f2e7;

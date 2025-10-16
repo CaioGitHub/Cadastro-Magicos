@@ -1,50 +1,47 @@
-<h2 class="mt-4">⚔️ Cadastro de Itens Mágicos ⚗️</h2>
+<div class="itens-wrapper">
+  <h2>⚔️ Cadastro de Itens Mágicos ⚗️</h2>
 
-<div class="form-container">
-  <form (ngSubmit)="adicionarItem()">
+  <!-- 🧾 Formulário -->
+  <form class="panel" (ngSubmit)="adicionarItem()">
     <div class="form-group">
       <label>Nome do Item</label>
-      <input [(ngModel)]="novoItem.nome" name="nome" required>
+      <input [(ngModel)]="novoItem.nome" name="nome" required />
     </div>
+
     <div class="form-group">
       <label>Tipo</label>
-      <input [(ngModel)]="novoItem.tipo" name="tipo" required>
+      <input [(ngModel)]="novoItem.tipo" name="tipo" required />
     </div>
+
     <div class="form-group">
       <label>Poder</label>
-      <input [(ngModel)]="novoItem.poder" name="poder" type="number" required>
+      <input [(ngModel)]="novoItem.poder" name="poder" type="number" required />
     </div>
+
     <div class="form-group">
       <label>URL da Imagem</label>
-      <input
-        [(ngModel)]="novoItem.imagem"
-        name="imagem"
-        placeholder="https://…"
-      />
-      <small
-        style="color:#f5d77b; opacity:.8"
-        *ngIf="!isImagemValida(novoItem.imagem)"
-      >
+      <input [(ngModel)]="novoItem.imagem" name="imagem" placeholder="https://…" />
+      <small *ngIf="!isImagemValida(novoItem.imagem)">
         Dica: use uma URL começando com http:// ou https://
       </small>
     </div>
 
-
-    <button type="submit">Adicionar Item</button>
+    <button type="submit" class="rpg-btn">Adicionar Item</button>
   </form>
-</div>
 
-<div class="cards">
-  <div class="card" *ngFor="let item of itens">
-    <img
-      [src]="item.imagem && item.imagem.trim() !== '' ? item.imagem : placeholder"
-      (error)="onImgError($event)"
-      [alt]="item.nome"
-      loading="lazy"
-      referrerpolicy="no-referrer"
-    />
-    <h3>{{ item.nome }}</h3>
-    <p>Tipo: {{ item.tipo }}</p>
-    <p>Poder: {{ item.poder }}</p>
+  <!-- 💎 Lista de Itens -->
+  <div class="cards">
+    <div class="card" *ngFor="let item of itens">
+      <img
+        [src]="item.imagem && item.imagem.trim() !== '' ? item.imagem : placeholder"
+        (error)="onImgError($event)"
+        [alt]="item.nome"
+        loading="lazy"
+        referrerpolicy="no-referrer"
+      />
+      <h3>{{ item.nome }}</h3>
+      <p>Tipo: {{ item.tipo }}</p>
+      <p>Poder: {{ item.poder }}</p>
+    </div>
   </div>
 </div>

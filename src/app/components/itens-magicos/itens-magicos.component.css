@@ -1,43 +1,68 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
+@import '../../../styles/panel-card.css';
 
 /* === Estrutura geral ========================================= */
 :host {
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
   min-height: 100vh;
+  padding: 3rem 2rem;
   background: var(--bg-color) url('https://www.transparenttextures.com/patterns/dark-mosaic.png');
   color: var(--text-color);
   font-family: 'Cinzel', serif;
-  padding: 2rem;
-  transition: background-color 0.5s ease, color 0.5s ease;
+  position: relative;
+  overflow: hidden;
 }
 
-/* === Título ================================================== */
+/* ✨ Fundo mágico leve (sem moldura externa) ================== */
+:host::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 30%, var(--accent-color)10%, transparent 70%);
+  opacity: 0.06;
+  mix-blend-mode: screen;
+  animation: ambientFlow 25s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes ambientFlow {
+  0% { transform: translateY(0); opacity: 0.05; }
+  50% { transform: translateY(-8px); opacity: 0.1; }
+  100% { transform: translateY(0); opacity: 0.07; }
+}
+
+/* === Container principal ==================================== */
+.itens-wrapper {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* === Título ================================================= */
 h2 {
   text-align: center;
   color: var(--accent-color);
   font-family: 'Cinzel', serif;
+  text-shadow: 0 0 12px var(--accent-color);
   margin-bottom: 1.5rem;
-  text-shadow: 0 0 10px var(--accent-color);
 }
 
-/* === Formulário ============================================== */
-.form-container {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 30px;
-}
-
-form {
+/* === Formulário ============================================= */
+form.panel {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 15px;
-  max-width: 600px;
   background: var(--panel-color);
   border: 2px solid var(--border-color);
   border-radius: 10px;
   padding: 20px;
-  box-shadow: 0 0 15px var(--accent-color);
+  box-shadow: 0 0 20px var(--accent-color);
   transition: all 0.5s ease;
+  margin: 0 auto 2rem;
+  max-width: 600px;
 }
 
 .form-group {
@@ -57,7 +82,7 @@ input {
   padding: 6px;
   border-radius: 5px;
   font-family: inherit;
-  transition: border-color 0.3s ease, background-color 0.3s ease;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 input:focus {
@@ -66,7 +91,20 @@ input:focus {
   box-shadow: 0 0 10px var(--accent-color);
 }
 
-/* === Cards de Itens ========================================== */
+small {
+  color: var(--accent-light);
+  opacity: 0.8;
+  font-size: 0.85rem;
+  margin-top: 3px;
+}
+
+button[type="submit"] {
+  grid-column: span 2;
+  justify-self: center;
+  margin-top: 10px;
+}
+
+/* === Cartões de Itens ======================================= */
 .cards {
   display: flex;
   justify-content: center;
@@ -109,16 +147,4 @@ input:focus {
 .card p {
   color: var(--text-color);
   margin: 2px 0;
-}
-
-/* === Dica de imagem ========================================== */
-small {
-  color: var(--accent-light);
-  opacity: 0.8;
-  font-size: 0.85rem;
-}
-
-/* === Transições suaves ======================================= */
-* {
-  transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
 }
