@@ -118,3 +118,10 @@ cadastro-magico/
 │
 └── angular.json
 ```
+
+---
+
+## 🧭 Licença
+
+Este projeto é de uso educacional e pessoal.
+Sinta-se livre para estudar, modificar e expandir 🛠️
