@@ -1,154 +1,174 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=UnifrakturCook:wght@700&display=swap');
+@import '../../../styles/panel-card.css';
 
-/* === Estrutura geral ========================================== */
+/* === Estrutura geral ======================================== */
 :host {
   display: flex;
-  justify-content: center;       /* ✅ Centraliza todo o conteúdo na horizontal */
+  justify-content: center;
   align-items: flex-start;
   min-height: 100vh;
+  padding: 3rem 2rem;
   background: var(--bg-color) url('https://www.transparenttextures.com/patterns/dark-mosaic.png');
   color: var(--text-color);
   font-family: 'Cinzel', serif;
-  transition: background-color 0.6s ease, color 0.6s ease, box-shadow 0.6s ease, border-color 0.6s ease;
-  padding: 2rem;
   position: relative;
   overflow: hidden;
 }
 
-/* === Container principal ===================================== */
-.spells-container {
-  width: 100%;
-  max-width: 1000px; /* 🔹 Mesma largura dos outros componentes */
-  background: var(--panel-color);
-  border: 2px solid var(--border-color);
-  border-radius: 10px;
-  padding: 2rem 3rem;
-  box-shadow: 0 0 25px var(--accent-color);
-  position: relative;
-  overflow: hidden;
-  margin: 0 auto; /* ✅ Centraliza o painel na tela */
-}
-
-/* ✨ Gradiente mágico de fundo */
-.spells-container::before {
+/* ✨ Fundo mágico leve (sem moldura) ========================== */
+:host::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 20% 20%, var(--accent-color) 20%, transparent 80%),
-              radial-gradient(circle at 80% 80%, var(--accent-hover) 15%, transparent 70%);
-  opacity: 0.08;
+  background: radial-gradient(circle at 60% 40%, var(--accent-color)10%, transparent 70%);
+  opacity: 0.06;
   mix-blend-mode: screen;
-  animation: ambientFlow 20s ease-in-out infinite alternate;
-  z-index: 0;
+  animation: ambientFlow 25s ease-in-out infinite alternate;
+  pointer-events: none;
 }
 
 @keyframes ambientFlow {
-  0% { transform: translateY(0) scale(1); opacity: 0.05; }
-  50% { transform: translateY(-10px) scale(1.05); opacity: 0.1; }
-  100% { transform: translateY(10px) scale(1); opacity: 0.08; }
+  0% { transform: translateY(0); opacity: 0.05; }
+  50% { transform: translateY(-8px); opacity: 0.1; }
+  100% { transform: translateY(0); opacity: 0.07; }
 }
 
-/* Garante que o conteúdo fique acima do gradiente */
-.spells-container > * {
+/* === Container principal ==================================== */
+.spells-wrapper {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
   position: relative;
   z-index: 1;
 }
 
-/* === Título ================================================== */
-h2, h1 {
+/* === Título ================================================= */
+h2 {
   text-align: center;
   color: var(--accent-color);
-  font-family: 'Cinzel', serif;
+  text-shadow: 0 0 12px var(--accent-color);
   margin-bottom: 1.5rem;
-  text-shadow: 0 0 10px var(--accent-color);
+  font-family: 'Cinzel', serif;
 }
 
-/* === Campos de entrada ======================================= */
-.bg-input {
-  background-color: var(--input-bg);
+/* === Filtros =============================================== */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
 }
 
-.text-input-text {
+.filters input,
+.filters select {
+  background: var(--input-bg);
+  border: 1px solid var(--border-color);
   color: var(--input-text);
+  padding: 8px 10px;
+  border-radius: 5px;
+  font-family: inherit;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+  max-width: 300px;
 }
 
-.bg-input::placeholder {
-  color: var(--accent-light);
-  opacity: 0.7;
+.filters input:focus,
+.filters select:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 10px var(--accent-color);
 }
 
-/* === Tipografia de destaques ================================= */
-.text-accent { color: var(--accent-color); }
-.bg-panel { background-color: var(--panel-color); box-shadow: 0 0 20px var(--accent-color); }
-.border-accent { border-color: var(--border-color); }
-.text-accent-light { color: var(--accent-light); }
-
-/* === Botões RPG ============================================== */
-.spell-btn,
-.load-btn {
-  all: unset;
-  display: inline-block;
+/* === Loading =============================================== */
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--accent-color);
   text-align: center;
-  cursor: pointer;
-  border-radius: 8px;
-  font-family: 'UnifrakturCook', cursive;
-  transition: all 0.3s ease-in-out;
+  gap: 1rem;
 }
 
-/* Magias */
+/* === Painel de Magias ====================================== */
+.spells-panel {
+  background: var(--panel-color);
+  border-radius: 10px;
+  border: 2px solid var(--border-color);
+  box-shadow: 0 0 20px var(--accent-color);
+  padding: 1.5rem;
+}
+
+/* === Níveis e lista ======================================== */
+h3 {
+  color: var(--accent-color);
+  font-family: 'Cinzel', serif;
+  margin: 1rem 0 0.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-shadow: 0 0 8px var(--accent-hover);
+}
+
+.arrow {
+  transition: transform 0.3s ease;
+}
+
+.rotate-90 {
+  transform: rotate(90deg);
+}
+
+/* === Botões de Magia ======================================= */
 .spell-btn {
   background: var(--button-bg);
-  color: var(--accent-light);
   border: 2px solid var(--border-color);
+  color: var(--accent-light);
+  border-radius: 8px;
+  padding: 6px 10px;
+  text-align: center;
   box-shadow: 0 0 10px var(--accent-color);
-  padding: 8px 12px;
-  font-size: 0.9rem;
-  text-shadow: 1px 1px 2px #000;
+  cursor: pointer;
+  font-family: 'UnifrakturCook', cursive;
+  transition: all 0.3s ease-in-out;
 }
 
 .spell-btn:hover {
   background: var(--button-hover-bg);
   color: var(--button-hover-text);
-  box-shadow: 0 0 20px var(--accent-hover), 0 0 40px var(--accent-color);
+  box-shadow: 0 0 20px var(--accent-hover);
   transform: translateY(-2px);
 }
 
-/* Botão “Carregar mais magias” */
-.load-btn {
-  background: var(--accent-color);
-  color: var(--button-hover-text);
+/* === Detalhes da Magia ===================================== */
+.spell-details {
+  margin-top: 2rem;
+  background: var(--panel-color);
   border: 2px solid var(--border-color);
-  font-weight: bold;
-  padding: 12px 28px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  box-shadow: 0 0 10px var(--accent-color);
+  border-radius: 10px;
+  box-shadow: 0 0 20px var(--accent-color);
+  padding: 1.5rem;
 }
 
-.load-btn:hover {
-  background-color: var(--accent-hover);
-  box-shadow: 0 0 20px var(--accent-hover);
-  transform: translateY(-3px);
+.spell-details h3 {
+  color: var(--accent-color);
+  text-shadow: 0 0 10px var(--accent-hover);
+  margin-bottom: 1rem;
 }
 
-/* === Animações =============================================== */
-.rotate-90 { transform: rotate(90deg); }
-
-@keyframes fadeInGroup {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+.descricao {
+  white-space: pre-line;
+  color: var(--text-color);
+  margin-top: 0.5rem;
 }
 
-.spell-grid { animation: fadeInGroup 0.5s ease-out; }
-
-.spell-appear { animation: spellGlow 1.5s ease-in-out infinite alternate; }
-
-@keyframes spellGlow {
-  from { box-shadow: 0 0 4px var(--accent-color); }
-  to { box-shadow: 0 0 14px var(--accent-hover); }
+/* === Botão de Carregar Mais ================================ */
+.load-more {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
 }
 
-/* === Spinner ================================================ */
+/* === Spinner =============================================== */
 .magic-spinner {
   border: 4px solid rgba(255, 215, 0, 0.2);
   border-top-color: var(--accent-color);
@@ -166,7 +186,8 @@ h2, h1 {
   to { box-shadow: 0 0 25px var(--accent-hover); }
 }
 
-/* Transição suave entre temas */
-.theme-transition * {
-  transition: background-color 0.8s ease, color 0.8s ease, box-shadow 0.8s ease;
+/* === Transições suaves ===================================== */
+* {
+  transition: background-color 0.5s ease, color 0.5s ease,
+              border-color 0.5s ease, box-shadow 0.5s ease;
 }

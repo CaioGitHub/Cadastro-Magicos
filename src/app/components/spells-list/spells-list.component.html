@@ -1,22 +1,15 @@
-<div class="spells-container p-6 text-white min-h-screen transition-colors duration-700">
-  <!-- Título -->
-  <div class="flex items-center justify-center mb-6">
-    <h2 class="text-3xl font-bold text-accent">🪄 Grimório de Magias</h2>
-  </div>
+<div class="spells-wrapper">
+  <h2>🪄 Grimório de Magias</h2>
 
   <!-- 🔍 Filtros -->
-  <div class="flex flex-col md:flex-row gap-4 mb-6 justify-center">
+  <div class="filters">
     <input
       type="text"
       placeholder="Buscar magia por nome..."
       [(ngModel)]="searchTerm"
-      class="p-2 rounded bg-input border border-accent w-full md:w-1/2 text-input-text focus:outline-none focus:ring focus:ring-accent"
     />
 
-    <select
-      [(ngModel)]="selectedLevel"
-      class="p-2 rounded bg-input border border-accent text-input-text focus:outline-none focus:ring focus:ring-accent"
-    >
+    <select [(ngModel)]="selectedLevel">
       <option value="all">Todos os níveis</option>
       <option *ngFor="let lvl of (groupedSpells | keyvalue)" [value]="lvl.key">
         Nível {{ lvl.key }}
@@ -25,26 +18,20 @@
   </div>
 
   <!-- 🌀 Carregamento -->
-  <div *ngIf="loading" class="flex flex-col items-center justify-center py-12 text-accent">
-    <div class="magic-spinner mb-4"></div>
-    <p class="text-lg font-semibold animate-pulse">Invocando magias...</p>
+  <div *ngIf="loading" class="loading">
+    <div class="magic-spinner"></div>
+    <p>Invocando magias...</p>
   </div>
 
   <!-- 📜 Lista de Magias -->
-  <div *ngIf="!loading">
+  <div *ngIf="!loading" class="panel spells-panel">
     <div *ngFor="let level of (getFilteredSpells() | keyvalue)">
-      <h3
-        class="text-2xl font-semibold text-accent mb-2 cursor-pointer flex items-center gap-2"
-        (click)="toggleLevel(level.key)"
-      >
-        <span [class.rotate-90]="openedLevels[level.key]" class="transition-transform">▶</span>
+      <h3 (click)="toggleLevel(level.key)">
+        <span [class.rotate-90]="openedLevels[level.key]" class="arrow">▶</span>
         Nível {{ level.key }}
       </h3>
 
-      <div
-        *ngIf="openedLevels[level.key]"
-        class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-6"
-      >
+      <div *ngIf="openedLevels[level.key]" class="spell-grid">
         <button
           *ngFor="let spell of level.value"
           (click)="showDetails(spell)"
@@ -57,19 +44,19 @@
   </div>
 
   <!-- 📖 Detalhe -->
-  <div *ngIf="selectedSpell" class="mt-8 p-6 rounded-lg bg-panel border border-accent shadow-lg">
-    <h3 class="text-2xl font-bold mb-2 text-accent">{{ selectedSpell.name }}</h3>
+  <div *ngIf="selectedSpell" class="panel spell-details">
+    <h3>{{ selectedSpell.name }}</h3>
     <p><strong>Nível:</strong> {{ selectedSpell.level }}</p>
     <p><strong>Tempo de Conjuração:</strong> {{ selectedSpell.casting_time }}</p>
     <p><strong>Alcance:</strong> {{ selectedSpell.range }}</p>
     <p><strong>Componentes:</strong> {{ selectedSpell.components?.join(', ') }}</p>
-    <p class="mt-4"><strong>Descrição:</strong></p>
-    <p class="text-gray-300 whitespace-pre-line">{{ selectedSpell.desc?.join('\n') }}</p>
+    <p><strong>Descrição:</strong></p>
+    <p class="descricao">{{ selectedSpell.desc?.join('\n') }}</p>
   </div>
 
   <!-- 🔮 Carregar mais -->
-  <div class="flex justify-center mt-6">
-    <button (click)="loadSpells(totalLoadedSpells, 50)" class="load-btn">
+  <div class="load-more">
+    <button (click)="loadSpells(totalLoadedSpells, 50)" class="rpg-btn">
       🔮 Carregar mais magias
     </button>
   </div>

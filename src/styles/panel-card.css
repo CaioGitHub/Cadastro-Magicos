@@ -1,0 +1,111 @@
+/* === 🌌 Tema base para todos os painéis e componentes RPG === */
+
+/* === Variáveis globais ====================================== */
+:root {
+  --bg-color: #0c0c0c;
+  --text-color: #f5f2e7;
+
+  --panel-color: rgba(15, 10, 5, 0.9);
+  --border-color: #d4af37;
+
+  --accent-color: #ffd700;
+  --accent-light: #f5d77b;
+  --accent-hover: #ffcc33;
+
+  --input-bg: #2b1d0e;
+  --input-text: #ffffff;
+
+  --button-bg: #5a0b0b;
+  --button-hover-bg: #a00;
+  --button-hover-text: #fff;
+}
+
+/* === 🧙‍♂️ Botões RPG universais ============================ */
+.rpg-btn {
+  all: unset;
+  display: inline-block;
+  padding: 10px 18px;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--button-bg);
+  color: var(--accent-light);
+  font-family: 'Cinzel', serif;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 0 15px var(--accent-color);
+  text-shadow: 1px 1px 2px #000;
+}
+
+.rpg-btn:hover {
+  background: var(--button-hover-bg);
+  color: var(--button-hover-text);
+  box-shadow: 0 0 25px var(--accent-hover), 0 0 50px var(--accent-color);
+  transform: translateY(-2px);
+}
+
+/* === ✨ Painéis e contêineres =============================== */
+.panel {
+  background: var(--panel-color);
+  border: 2px solid var(--border-color);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 20px var(--accent-color);
+  position: relative;
+  overflow: hidden;
+}
+
+.panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 20%, var(--accent-color)20%, transparent 70%),
+              radial-gradient(circle at 80% 80%, var(--accent-hover)15%, transparent 70%);
+  opacity: 0.08;
+  mix-blend-mode: screen;
+  animation: ambientFlow 18s ease-in-out infinite alternate;
+  z-index: 0;
+}
+
+.panel > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* === 💫 Animações =========================================== */
+@keyframes ambientFlow {
+  0% { transform: translateY(0) scale(1); opacity: 0.05; }
+  50% { transform: translateY(-10px) scale(1.05); opacity: 0.1; }
+  100% { transform: translateY(10px) scale(1); opacity: 0.08; }
+}
+
+/* === ⚡ Textos e títulos ==================================== */
+h1, h2, h3 {
+  font-family: 'Cinzel', serif;
+  text-align: center;
+  color: var(--accent-color);
+  text-shadow: 0 0 12px var(--accent-color);
+}
+
+/* === 🪶 Campos de formulário ================================ */
+input, select, textarea {
+  background: var(--input-bg);
+  border: 1px solid var(--border-color);
+  color: var(--input-text);
+  padding: 6px 8px;
+  border-radius: 5px;
+  font-family: inherit;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 10px var(--accent-color);
+}
+
+/* === 🕯️ Transições suaves ================================== */
+* {
+  transition: background-color 0.5s ease, color 0.5s ease,
+              border-color 0.5s ease, box-shadow 0.5s ease;
+}
